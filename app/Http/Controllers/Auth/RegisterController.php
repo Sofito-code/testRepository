@@ -74,26 +74,10 @@ class RegisterController extends Controller
             'password' => Hash::make($data['password']),
             'address' => $data['address'],
             'phone' => $data['phone'],
-            'is_admin' => false,            
-            'enabled'=>true,            
+            'is_admin' => false,
+            'enabled' => true,
         ]);
 
-        //$user->roles()->sync([2]);
-        //evniar email
         return $user;
     }
-
-    // public function verify($code){
-    //     $user = User::where('confirmation_code',$code)->first();
-
-    //     if(!$user){
-    //         return redirect('/');
-    //     }
-    //     $user->confirmed = true;
-    //     $user->confirmation_code = null;
-    //     $user->save();
-
-    //     redirect()->route('login')
-    //     ->with('status_success','mail verified successfully');
-    // }
 }
