@@ -3,10 +3,10 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="col-md-10">
             <div class="card">
                 <div class="card-header"><h2>Lista de clientes deshabilitados</h2></div>
-                
+
                 <div class="card-body">
                     <a href="{{route('client.index')}}" class="btn btn-primary float-right">
                         Ver clientes habilitados
@@ -23,7 +23,7 @@
                             <th colspan="2"></th>
                           </tr>
                         </thead>
-                        <tbody> 
+                        <tbody>
                             @foreach ($clients as $client)
                             @if($client['is_admin']==true || $client['enabled']==true || $client['email_verified_at']==null)
                                 @continue
@@ -35,11 +35,11 @@
                                 <td>{{$client->phone}}</td>
                                 <td>{{$client->email}}</td>
                                 <td><a class="btn btn-outline-secondary" href="{{route('client.show',$client->id)}}">ver</a></td>
-                                <td><a class="btn btn-outline-success" href="{{route('client.edit',$client->id)}}">habilitar</a></td>                              
+                                <td><a class="btn btn-outline-success" href="{{route('client.changeState',$client->id)}}">habilitar</a></td>
                             </tr>
-                            
+
                             @endforeach
-                            
+
                         </tbody>
                       </table>
 

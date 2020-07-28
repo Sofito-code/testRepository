@@ -5,30 +5,28 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header" ><h2>Editar Rol</h2></div>
+                <div class="card-header" ><h2>Rol</h2></div>
 
                 <div class="card-body">
                     @include('custom.message')
 
                     <form action="{{route('role.update' , $role->id)}}" method="POST">
-                        @method('PUT')
                         @csrf
-                        <div class="container">
-                            <h3>Información requerida</h3>
-                        </div>
+                        @method('PUT')
+
                         <div class="form-group">
                             <label for="name">Nombre</label>
                             <input type="text" class="form-control"
-                            id="name" name="name" value="{{ old('name', $role->name)}}">
+                            id="name" name="name" value="{{ old('name', $role->name)}}" readonly>
                         </div>
                         <div class="form-group">
                             <label for="slug">Slug</label>
                             <input type="text" class="form-control" name="slug"
-                             id="slug" value="{{ old('slug', $role->slug)}}">
+                             id="slug" value="{{ old('slug',$role->slug)}}" readonly>
                         </div>
                         <div class="form-group">
                             <label for="description">Descripción</label>
-                            <textarea class="form-control" name="description"
+                            <textarea readonly class="form-control" name="description"
                              id="description" rows="2">{{ old('description',$role->description)}}</textarea>
                         </div>
                         {{-- placeholder="..." --}}
@@ -36,17 +34,17 @@
                         {{-- radios --}}
                         <h3>Accesibilidad total</h3>
                         <div class="custom-control custom-radio custom-control-inline">
-                            <input type="radio" id="full-accessYes" name="full-access"
+                            <input disabled type="radio" id="full-accessYes" name="full-access"
                              class="custom-control-input" value="yes"
                              @if($role['full-access']=='yes')
                                  checked
                              @elseif(old('full-access')=='yes')
                                  checked
                              @endif>
-                            <label class="custom-control-label" for="full-accessYes">Si</label>
+                            <label class="custom-control-label" for="full-accessYes">Yes</label>
                           </div>
                           <div class="custom-control custom-radio custom-control-inline">
-                            <input type="radio" id="full-accessNo" name="full-access"
+                            <input disabled type="radio" id="full-accessNo" name="full-access"
                             class="custom-control-input" value="no"
                             @if($role['full-access']=='no')
                                  checked
@@ -61,7 +59,7 @@
 
                         @foreach($permissions as $permissionItem)
                         <div class="custom-control custom-checkbox">
-                            <input type="checkbox" class="custom-control-input"
+                            <input disabled type="checkbox" class="custom-control-input"
                             id="permission_{{$permissionItem->id}}" value="{{$permissionItem->id}}"
                             name="permission[]"
 
@@ -79,8 +77,10 @@
                             </label>
                         </div>
                         @endforeach
+
                         <hr>
-                        <input class="btn btn-primary" type="submit" value="Guardar">
+                        <a class="btn btn-outline-success" href="{{route('role.edit',$role->id)}}">Editar</a>
+                        <a class="btn btn-outline-secondary" href="{{route('role.index')}}">Atrás</a>
                     </form>
                 </div>
             </div>

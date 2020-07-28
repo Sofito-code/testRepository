@@ -34,7 +34,15 @@
                                 <td>{{$roleItem['full-access']}}</td>
                                 <td><a class="btn btn-outline-secondary" href="{{route('role.show',$roleItem->id)}}">ver</a></td>
                                 <td><a class="btn btn-outline-success" href="{{route('role.edit',$roleItem->id)}}">editar</a></td>
-                                <td><a class="btn btn-outline-danger" href="{{route('role.destroy',$roleItem->id)}}">eliminar</a></td>
+                                <td>
+                                    @if ($roleItem->name=='Admin')
+                                    @else
+                                        <form action="{{route('role.destroy',$roleItem->id)}}" method="POST">
+                                            @csrf
+                                            @method('DELETE')
+                                        <button class="btn btn-outline-danger">eliminar</button></form>
+                                    @endif
+                                    </td>
                               </tr>
                             @endforeach
                         </tbody>

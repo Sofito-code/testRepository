@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header" ><h2>Create Role</h2></div>
+                <div class="card-header" ><h2>Crear un Rol</h2></div>
 
                 <div class="card-body">
                     @include('custom.message')
@@ -13,7 +13,7 @@
                     <form action="{{route('role.store')}}" method="POST">
                         @csrf
                         <div class="container">
-                            <h3>Required Data</h3>
+                            <h3>Información requerida</h3>
                         </div>
                         <div class="form-group">
                             <label for="name">Nombre</label>
@@ -21,19 +21,19 @@
                             id="name" name="name" value="{{ old('name')}}">
                         </div>
                         <div class="form-group">
-                            <label for="description">Descripcion</label>
-                            <textarea class="form-control" name="description"
-                             id="description" rows="2">{{ old('description')}}</textarea>
-                        </div>
-                        <div class="form-group">
                             <label for="slug">Slug</label>
                             <input type="text" class="form-control" name="slug"
                              id="slug" value="{{ old('slug')}}">
                         </div>
+                        <div class="form-group">
+                            <label for="description">Descripción</label>
+                            <textarea class="form-control" name="description"
+                             id="description" rows="2">{{ old('description')}}</textarea>
+                        </div>
                         {{-- placeholder="..." --}}
                         <hr>
                         {{-- radios --}}
-                        <h3>Full access</h3>
+                        <h3>Accesibilidad total</h3>
                         <div class="custom-control custom-radio custom-control-inline">
                             <input type="radio" id="full-accessYes" name="full-access"
                              class="custom-control-input" value="yes"
@@ -55,7 +55,7 @@
                           </div>
                         <hr>
                         {{-- checkBox --}}
-                        <h3>Permission List</h3>
+                        <h3>Lista de permisos</h3>
 
                         @foreach($permissions as $permissionItem)
                         <div class="custom-control custom-checkbox">
@@ -76,7 +76,7 @@
                         @endforeach
 
                         <hr>
-                        <input class="btn btn-primary" type="submit" value="Save">
+                        <input class="btn btn-primary" type="submit" value="Guardar">
                     </form>
                 </div>
             </div>
