@@ -5,106 +5,59 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\RolesAndPermissions\Models\Role;
 use App\RolesAndPermissions\Models\Permission;
-use App\Http\Requests\RoleRequest;
+use App\Http\Requests\StoreRoleRequest;
+use App\Actions\StoreOrUpdateRole;
+use App\Actions\ShowOrEditRole;
+use App\Http\Requests\UpRoleRequest;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\View\View;
 
 class RoleController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+    public function index(): View
     {
         $roles = Role::orderBy('id', 'Desc')->paginate(5);
-
         return view('role.index', compact('roles'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function create(): View
     {
         $permissions = Permission::get();
         return view('role.create', compact('permissions'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(RoleRequest $request)
+    public function store(StoreRoleRequest $request, Role $role)
     {
-        $$role = Role::create($request->validated());
-        if ($request->get('permission')) {
-            $role->permissions()->sync($request->get('permission'));
-        }
+        $role = Role::create($request->validated());
+        StoreOrUpdateRole::execute($request, $role);
         return redirect()->route('role.index')
-            ->with('status_success', 'Role guardado correctamente');
+            ->with('status_success', 'Rol guardado correctamente');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
+    public function show(Role $role): View
     {
-        //
+        ShowOrEditRole::execute($role);
+        return view('role.show', compact('permissions', 'role', 'permissions_role'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Role $role)
+    public function edit(Role $role): View
     {
-        $permissions_role = [];
-        foreach ($role->permissions as $permissions) {
-            $permissions_role[] = $permissions->id;
-        }
-        $permissions = Permission::get();
+        ShowOrEditRole::execute($role);
         return view('role.edit', compact('permissions', 'role', 'permissions_role'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Role $role)
+    public function update(UpRoleRequest $request, Role $role)
     {
-        $request->validate([
-            'name' => 'required|max:50|unique:roles,name,' . $role->id,
-            'slug' => 'required|max:50|unique:roles,slug,' . $role->id,
-            'full-access' => 'required|in:yes,no',
-        ]);
-        $role->update($request->validate());
-        if ($request->get('permission')) {
-            $role->permissions()->sync($request->get('permission'));
-        }
+        $role->fill($request->validated());
+        StoreOrUpdateRole::execute($request, $role);
         return redirect()->route('role.index')
-            ->with('status_success', 'Rol actualizado correctamente');
+            ->with('status_success', 'Rol guardado correctamente');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
+    public function destroy(Role $role)
     {
-        //
+        $role->delete();
+        return redirect()->route('role.index')
+            ->with('status_success', 'Rol eliminado correctamente');
     }
 }

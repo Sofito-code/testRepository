@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class RoleRequest extends FormRequest
+class StoreRoleRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -13,7 +13,7 @@ class RoleRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,8 +24,8 @@ class RoleRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|max:50|unique:roles,name',
-            'slug' => 'required|max:50|unique:roles,slug',
+            'name' => 'required|min:3|max:50|unique:roles,name',
+            'slug' => 'required|min:3|max:50|unique:roles,slug',
             'full-access' => 'required|in:yes,no',
         ];
     }
