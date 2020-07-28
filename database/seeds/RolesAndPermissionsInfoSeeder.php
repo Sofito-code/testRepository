@@ -18,28 +18,27 @@ class RolesAndPermissionsInfoSeeder extends Seeder
     {
         //truncate tables
         DB::statement("SET foreign_key_checks=0");
-            DB::table('role_user')->truncate();
-            DB::table('permission_role')->truncate();
-            Permission::truncate();
-            Role::truncate();
+        DB::table('role_user')->truncate();
+        DB::table('permission_role')->truncate();
+        Permission::truncate();
+        Role::truncate();
         DB::statement("SET foreign_key_checks=1");
 
-        $userAdmin= User::where('email','admin@chocoloco.com')->first();
-        if ($userAdmin)
-        {
-           $userAdmin->delete();
+        $userAdmin = User::where('email', 'admin@chocoloco.com')->first();
+        if ($userAdmin) {
+            $userAdmin->delete();
         }
         //user admin
-        $userAdmin= user::create([
-        'name' => 'admin',
-        'email' => 'admin@chocoloco.com',
-        'address'=> 'N/D',
-        'phone' => 'N/D',
-        'is_admin' => true,
-        'email_verified_at' => '2020-06-29 00:54:00',
-        'enabled'=> true,
-        'password' => Hash::make('admin'),
-        ]); 
+        $userAdmin = user::create([
+            'name' => 'admin',
+            'email' => 'admin@chocoloco.com',
+            'address' => 'N/D',
+            'phone' => 'N/D',
+            'is_admin' => true,
+            'email_verified_at' => '2020-06-29 00:54:00',
+            'enabled' => true,
+            'password' => Hash::make('admin'),
+        ]);
         //rol admin
         $roleAdmin = Role::create([
             'name' => 'Admin',
@@ -47,100 +46,100 @@ class RolesAndPermissionsInfoSeeder extends Seeder
             'description' => 'Administrador',
             'full-access' => 'yes'
         ]);
-            //table role_user
+        //table role_user
         $userAdmin->roles()->sync([$roleAdmin->id]);
-            //permissions
-        $permission_all=[];
-        
+        //permissions
+        $permission_all = [];
+
         //permission role
-        $permission= Permission::create([
-            'name' => 'List role',
+        $permission = Permission::create([
+            'name' => 'Listar un rol',
             'slug' => 'role.index',
             'description' => 'Un usuario puede ver la lista de los roles',
         ]);
 
-        $permission_all[]= $permission->id;
-            //permission role
-        $permission= Permission::create([
-            'name' => 'show role',
+        $permission_all[] = $permission->id;
+        //permission role
+        $permission = Permission::create([
+            'name' => 'Mostrar rol',
             'slug' => 'role.show',
-            'description' => 'Un usuario puede ver roles',
+            'description' => 'Un usuario puede ver detalles del rol',
         ]);
-    
-        $permission_all[]= $permission->id;
-                //permission role
-        $permission= Permission::create([
-            'name' => 'destroy role',
+
+        $permission_all[] = $permission->id;
+        //permission role
+        $permission = Permission::create([
+            'name' => 'Eliminar un rol',
             'slug' => 'role.destroy',
             'description' => 'un usuario puede eliminar roles',
         ]);
 
-        $permission_all[]= $permission->id;
-            //permission role
-        $permission= Permission::create([
-            'name' => 'Create role',
+        $permission_all[] = $permission->id;
+        //permission role
+        $permission = Permission::create([
+            'name' => 'Crear un rol',
             'slug' => 'role.create',
             'description' => 'Un usuario puede crear roles',
         ]);
-    
-        $permission_all[]= $permission->id;
-                //permission role
-        $permission= Permission::create([
-            'name' => 'Edit role',
+
+        $permission_all[] = $permission->id;
+        //permission role
+        $permission = Permission::create([
+            'name' => 'Editar rol',
             'slug' => 'role.edit',
             'description' => 'Un usuario puede editar roles',
-        ]);       
+        ]);
 
-        $permission_all[]= $permission->id;
-            //permission user
-        $permission= Permission::create([
-            'name' => 'Enable user',
+        $permission_all[] = $permission->id;
+        //permission user
+        $permission = Permission::create([
+            'name' => 'Cambiar estado de un usuario',
             'slug' => 'client.edit',
-            'description' => 'Habilitar usuarios',
+            'description' => 'Habilitar/Deshabilitar usuarios',
         ]);
-            
-        $permission_all[]= $permission->id;
+
+        $permission_all[] = $permission->id;
         //permission user
-        $permission= Permission::create([
-            'name' => 'List user',
+        $permission = Permission::create([
+            'name' => 'Listar usuarios',
             'slug' => 'user.index',
-            'description' => 'Un usuario puede ver la lista de los usuarios',
+            'description' => 'Puede ver la lista de los usuarios',
         ]);
 
 
-        $permission_all[]= $permission->id;
+        $permission_all[] = $permission->id;
         //permission user
-        $permission= Permission::create([
-            'name' => 'show user',
+        $permission = Permission::create([
+            'name' => 'Mostrar usuario',
             'slug' => 'user.show',
-            'description' => 'Un usuario puede ver usuarios',
-        ]);
-            
-        $permission_all[]= $permission->id;
-            //permission user
-        $permission= Permission::create([
-        'name' => 'destroy user',
-        'slug' => 'user.destroy',
-        'description' => 'un usuario puede eliminar usuarios',
+            'description' => 'Puede ver detalles usuario',
         ]);
 
-        $permission_all[]= $permission->id;
-            //permission user
+        $permission_all[] = $permission->id;
+        //permission user
+        $permission = Permission::create([
+            'name' => 'destroy user',
+            'slug' => 'user.destroy',
+            'description' => 'Puede eliminar usuarios',
+        ]);
+
+        $permission_all[] = $permission->id;
+        //permission user
         /* $permission= Permission::create([
             'name' => 'Create user',
             'slug' => 'user.create',
             'description' => 'Un usuario puede crear usuarios',
         ]);
-            
+
         $permission_all[]= $permission->id; */
-            //permission user
-        $permission= Permission::create([
-        'name' => 'Edit user',
-        'slug' => 'user.edit',
-        'description' => 'Un usuario puede editar usuarios',
+        //permission user
+        $permission = Permission::create([
+            'name' => 'Editar user',
+            'slug' => 'user.edit',
+            'description' => 'Un usuario puede editar usuarios',
         ]);
 
-        $permission_all[]= $permission->id;
+        $permission_all[] = $permission->id;
 
         //table permission_role
         $roleAdmin->permissions()->sync($permission_all);
