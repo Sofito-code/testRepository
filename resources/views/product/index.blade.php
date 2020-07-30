@@ -12,7 +12,7 @@
             </button>
             <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
               <a class="dropdown-item" href="{{route('product.create')}}">Crear producto</a>
-              <a class="dropdown-item" href="#">Ver listado de productos</a>
+              <a class="dropdown-item" href="{{route('product.whiteList')}}">Ver listado de productos</a>
             </div>
         </div>
         @endif
@@ -20,8 +20,11 @@
     <ul>
         <div class="row">
             @forelse($products as $productItem)
-                <div class="col-sm-4" style="padding-top: 15px; padding-bottom: 15px;">
-                    <div class="card text-center" style="width: 18rem;">
+                @if($productItem['enabled']==false)
+                    @continue
+                @endif
+                <div class="col-sm-4 " style="padding-top: 15px; padding-bottom: 15px;">
+                    <div class="card border-success text-center" style="width: 18rem;">
                         <img src="images/products/{{$productItem->image }}" class="card-img-top" alt="{{$productItem->image}}" style="height: 18rem;width: 18rem; object-fit:cover">
                         <div class="card-body">
                             <h5 class="card-title font-weight-bold">{{ $productItem->title }}</h5>
@@ -30,7 +33,7 @@
                     </div>
                 </div>
             @empty
-                <li>No hay productos para mostrar</li>
+                <li>No hay productos creados</li>
             @endforelse
         </div>
     </ul>
