@@ -36,13 +36,15 @@ class RoleController extends Controller
 
     public function show(Role $role): View
     {
-        ShowOrEditRole::execute($role);
+        $permissions_role = ShowOrEditRole::execute($role);
+        $permissions = Permission::get();
         return view('role.show', compact('permissions', 'role', 'permissions_role'));
     }
 
     public function edit(Role $role): View
     {
-        ShowOrEditRole::execute($role);
+        $permissions_role = ShowOrEditRole::execute($role);
+        $permissions = Permission::get();
         return view('role.edit', compact('permissions', 'role', 'permissions_role'));
     }
 

@@ -14,6 +14,6 @@ class ShowOrEditRole
         foreach ($role->permissions as $permissions) {
             $permissions_role[] = $permissions->id;
         }
-        $permissions = Permission::get();
+        return $permissions_role;
     }
 }
