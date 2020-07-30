@@ -1,5 +1,5 @@
 @extends('layouts.app')
-
+@section('title','Clientes deshabilitados| Lista')
 @section('content')
 <div class="container">
     <div class="row justify-content-center">

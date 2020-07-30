@@ -7,8 +7,8 @@
             <img class="img-responsive menu-thumbnails" style="width:331.7px;height:429px;" src="{{ asset('images/logoC.png') }}"/>
         </div>
         <div class="col">
-            <div class="card">
-                <div class="card-header"><h4>{{ __('¡Queremos que seas parte de Chocoloco!') }}</h4></div>
+            <div class="card border-success">
+                <div class="card-header"><h4 class="text-center">{{ __('¡Queremos que seas parte de Chocoloco!') }}</h4></div>
 
                 <div class="card-body">
                     <form method="POST" action="{{ route('register') }}">

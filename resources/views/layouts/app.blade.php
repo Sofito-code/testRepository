@@ -7,7 +7,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>Chocoloco</title>
+    <title>@yield('title', 'Chocoloco')</title>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
@@ -19,9 +19,13 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <style>
+    
     html, body {
         background-color:rgb(255, 249, 159);
-        font-family: 'Nunito', sans-serif;}
+        font-family: 'Nunito', sans-serif;
+    }
+
+
     </style>
 </head>
 <body>
