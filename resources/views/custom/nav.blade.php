@@ -1,9 +1,8 @@
-<nav class="navbar navbar-light" style="background-color: #FFA73E;">
+<nav class="navbar navbar-light " style="background-color: #FFA73E;">
     <div class="container">
 
         <a class="navbar-brand" href="{{ url('/') }}">
-            <img src="/images/Logo.png" width="180" height="100%"
-            style="">
+            <img src="/images/Logo.png" width="180" height="100%">
         </a>
         <form class="form-inline mr-auto">
             <div class="col-xs-5" style="margin-left: 70px;">
@@ -40,16 +39,16 @@
         @endguest
     </div>
 </nav>
-<nav class="navbar" style="background-color: #9B5D27; height: 25px; padding-top: 2px;">
+<nav class="shadow navbar " style="background-color: #9B5D27; height: 25px; padding-top: 2px;">
     <div class="row justify-content-center" style="width: 100%; padding-left: 6rem; padding-top: 0rem">
-        <a class="col nav-link active" href="{{route('product.index')}}" style="color: white; padding-top: 0rem">Productos</a>
-        <a class="col nav-link disabled" href="#" style="color: white; padding-top: 0rem">Galería</a>
-        <a class="col nav-link disabled" href="#" style="color: white; padding-top: 0rem">Sobre Nosotros</a>
-        <a class="col nav-link disabled" href="#" style="color: white; padding-top: 0rem">Contáctanos</a>
+        <a class="col nav-link {{setActive('product.*')}}" href="{{route('product.index')}}" style="padding-top: 0rem">Productos</a>
+        <a class="col nav-link disabled" href="#" style="padding-top: 0rem">Galería</a>
+        <a class="col nav-link disabled" href="#" style="padding-top: 0rem">Sobre Nosotros</a>
+        <a class="col nav-link disabled" href="#" style="padding-top: 0rem">Contáctanos</a>
         @auth
             @if(auth()->user()->is_admin)
-                <a class="col nav-link active" href="{{ route('client.index')}}" style="color: white; padding-top: 0rem">Clientes</a>
-                <a class="col nav-link active" href="{{ route('role.index')}}" style="color: white; padding-top: 0rem">Roles</a>
+                <a class="col nav-link {{setActive('client.index')}}" href="{{ route('client.index')}}" style="padding-top: 0rem">Clientes</a>
+                <a class="col nav-link {{setActive('role.index')}}" href="{{ route('role.index')}}" style="padding-top: 0rem">Roles</a>
             @endif
         @endauth
     </div>
