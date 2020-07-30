@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests\SaveProductRequest;
 use App\Product;
+use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
 {
@@ -20,7 +21,6 @@ class ProductController extends Controller
 
     public function show(Product $product)
     {
-
         return view('product.show', ['product' => $product]);
     }
 
@@ -31,7 +31,14 @@ class ProductController extends Controller
 
     public function store(SaveProductRequest $request)
     {
-        Product::create($request->validated());
+        if ($request->hasFile('image')) {
+            $file = $request->file('image');
+            $name = $file->getClientOriginalName();
+            $file->move('images/products', $name);
+        }
+        $product = Product::create($request->validated());
+        $product->image = $name;
+        $product->save();
         return redirect()->route('product.index')->with('status', 'El producto fue creado satisfactoriamente');
     }
 
