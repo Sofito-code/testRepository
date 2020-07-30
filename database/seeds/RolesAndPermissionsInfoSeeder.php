@@ -39,6 +39,16 @@ class RolesAndPermissionsInfoSeeder extends Seeder
             'enabled' => true,
             'password' => Hash::make('admin'),
         ]);
+        $userAdmin = user::create([
+            'name' => 'test',
+            'email' => 'test@chocoloco.com',
+            'address' => 'N/D',
+            'phone' => 'N/D',
+            'is_admin' => false,
+            'email_verified_at' => '2020-06-29 00:54:00',
+            'enabled' => true,
+            'password' => Hash::make('test'),
+        ]);
         //rol admin
         $roleAdmin = Role::create([
             'name' => 'Admin',
