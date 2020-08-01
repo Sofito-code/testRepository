@@ -7,11 +7,14 @@
           <div class="carousel-item active" data-interval="10000" align="center">
             <img src="/images/ChocolocoHome.png" class="d-block w-auto" alt="..." style="height: 270px">
           </div>
-          <div class="carousel-item" data-interval="1000">
-            <img src="..." class="d-block w-100" alt="...">
+          <div class="carousel-item" data-interval="10000" align="center">
+            <img src="/images/slider/plancha.jpg" class="d-block w-auto" alt="..." style="height: 270px">
           </div>
-          <div class="carousel-item">
-            <img src="..." class="d-block w-100" alt="...">
+          <div class="carousel-item" data-interval="10000" align="center">
+            <img src="/images/slider/tipos_de_trotas.jpg" class="d-block w-auto" alt="..." style="height: 270px">
+          </div>
+          <div class="carousel-item" data-interval="10000" align="center">
+            <img src="/images/slider/banner.jpeg" class="d-block w-auto" alt="..." style="height: 270px">
           </div>
         </div>
         <a class="carousel-control-prev" href="#carouselExampleInterval" role="button" data-slide="prev">
