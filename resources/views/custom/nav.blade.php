@@ -4,12 +4,15 @@
         <a class="navbar-brand" href="{{ url('/') }}">
             <img src="/images/Logo.png" width="180" height="100%">
         </a>
-        <form class="form-inline mr-auto">
+
+        {{-- buscador --}}
+    <form class="form-inline mr-auto" action="{{route('product.index')}}">
             <div class="col-xs-5" style="margin-left: 70px;">
-              <input class="form-control" type="text" placeholder="Buscar productos" style="width:400px">
-              <a type="submit" class=""><img src="/images/searchIcon.png" width="40" height="100%"></a>
+              <input name="search"class="form-control" type="search" placeholder="Buscar productos" style="width:400px; border: 1px solid #6bc72a">
+              <button class="btn button-transparent" type="submit" style="padding-top: 0rem; padding-bottom: 0rem;"><img src="/images/searchIcon.png" width="40" height="100%"></button>
             </div>
         </form>
+
         @guest
             @if (Route::has('register'))
                 <a class="nav-link" href="{{ route('register') }}">

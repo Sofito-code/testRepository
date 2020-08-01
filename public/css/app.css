@@ -1998,9 +1998,9 @@ pre code {
 .form-control:focus {
     color: #495057;
     background-color: #fff;
-    border-color: #a1cbef;
+    border-color: #9ac57b;
     outline: 0;
-    box-shadow: 0 0 0 0.2rem rgba(52, 144, 220, 0.25);
+    box-shadow: 0 0 0 0.2rem #6bc72a;
 }
 
 .form-control::-moz-placeholder {
