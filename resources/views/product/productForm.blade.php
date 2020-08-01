@@ -61,7 +61,7 @@
     <label for="image" class="col-md-4 col-form-label text-md-right">{{ __('Foto') }}</label>
 
     <div class="col-md-6">
-        <input id="image" type="file" name="image" class=" @error('image') is-invalid @enderror">
+    <input id="image" type="file" name="image" class=" @error('image') is-invalid @enderror" value="{{old('image', $product->image ?? '')}}">
 
         @error('image')
             <span class="invalid-feedback" role="alert">
