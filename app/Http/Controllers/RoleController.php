@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+
 use App\RolesAndPermissions\Models\Role;
 use App\RolesAndPermissions\Models\Permission;
 use App\Http\Requests\StoreRoleRequest;
-use App\Actions\StoreOrUpdateRole;
-use App\Actions\ShowOrEditRole;
+use App\Actions\Roles\StoreOrUpdateRole;
+use App\Actions\Roles\ShowOrEditRole;
 use App\Http\Requests\UpRoleRequest;
-use Illuminate\Support\Facades\Redirect;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
 
 class RoleController extends Controller
@@ -26,7 +26,7 @@ class RoleController extends Controller
         return view('role.create', compact('permissions'));
     }
 
-    public function store(StoreRoleRequest $request, Role $role)
+    public function store(StoreRoleRequest $request, Role $role): RedirectResponse
     {
         $role = Role::create($request->validated());
         StoreOrUpdateRole::execute($request, $role);

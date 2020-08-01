@@ -1,6 +1,6 @@
-<?php 
+<?php
 
-function setActive($routeName){
-//-- request-> path, url, routeIs
- return request()->routeIs($routeName) ? 'active' : '';
+function setActive($routeName): string
+{
+    return request()->routeIs($routeName) ? 'active' : '';
 }
