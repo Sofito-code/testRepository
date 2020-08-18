@@ -1,6 +1,6 @@
 @auth()
     @if(auth()->user()->is_admin && request()->routeIs('product.index'))
-        <div class="btn-group" role="group" style="float: left;left: 20px;margin-bottom: 30px;">
+        <div class="btn-group" role="group" style="float: left;left: 20px;margin-bottom: 30px; margin-right: 30px;">
             <button id="btnGroupDrop1" type="button"
                 class="btn btn-success dropdown-toggle" data-toggle="dropdown"
                 aria-haspopup="true" aria-expanded="false">

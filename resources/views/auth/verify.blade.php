@@ -7,8 +7,8 @@
             @include('custom.column')
         </div>
         <div class="col" style="width: 924px">
-            @include('custom.slider')
             @include('auth.cardVerify')
+            @include('custom.slider')
         </div>
     </div>
 </div>

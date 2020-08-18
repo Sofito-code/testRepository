@@ -1,6 +1,5 @@
+<h1 class="text-center" style="padding-bottom: 10px">{{ __('Verifica tú correo') }}</h1>
 <div class="card">
-    <div class="card-header">{{ __('Verifica tú correo') }}</div>
-
     <div class="card-body">
         @if (session('resent'))
             <div class="alert alert-success" role="alert">

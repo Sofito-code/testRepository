@@ -2,6 +2,7 @@
 
 @section('content')
 <div class="container">
+    <h1 class="text-center" style="padding-bottom: 10px">Bienvenido</h1>
     <div class="row">
         <div class="col">
 

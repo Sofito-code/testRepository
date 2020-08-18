@@ -17,7 +17,7 @@
                           <tr>
                             <th scope="col">ID</th>
                             <th scope="col">Titulo</th>
-                            <th scope="col">URL</th>
+                            <th scope="col">Slug</th>
                             <th scope="col">Descripción</th>
                             <th scope="col">Precio</th>
                             <th colspan="3"></th>
@@ -31,7 +31,7 @@
                             <tr>
                                 <th scope="row">{{$product->id}}</th>
                                 <td>{{$product->title}}</td>
-                                <td>{{$product->URL}}</td>
+                                <td>{{$product->slug}}</td>
                                 <td>{{$product->description}}</td>
                                 <td>{{$product->price}}</td>
                                 <td><a class="btn btn-outline-secondary" href="{{route('product.show',$product)}}">ver</a></td>

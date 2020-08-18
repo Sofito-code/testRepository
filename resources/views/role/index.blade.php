@@ -2,11 +2,10 @@
 @section('title','Roles | Lista')
 @section('content')
 <div class="container">
+    <h1 class="text-center" style="padding-bottom: 10px">Lista de Roles</h1>
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header"><h2>Lista de Roles</h2></div>
-
                 <div class="card-body">
 
                     <a href="{{route('role.create')}}" class="btn btn-primary float-right">
@@ -35,7 +34,7 @@
                                 <td><a class="btn btn-outline-secondary" href="{{route('role.show',$roleItem->id)}}">ver</a></td>
                                 <td><a class="btn btn-outline-success" href="{{route('role.edit',$roleItem->id)}}">editar</a></td>
                                 <td>
-                                    @if ($roleItem->name=='Admin')
+                                    @if ($roleItem->id== 1 || $roleItem->id== 2)
                                     @else
                                         <form action="{{route('role.destroy',$roleItem->id)}}" method="POST">
                                             @csrf

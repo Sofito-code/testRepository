@@ -2,11 +2,10 @@
 @section('title','Clientes deshabilitados| Lista')
 @section('content')
 <div class="container">
+    <h1 class="text-center" style="padding-bottom: 10px">Lista de clientes deshabilitados</h1>
     <div class="row justify-content-center">
         <div class="col-md-10">
             <div class="card">
-                <div class="card-header"><h2>Lista de clientes deshabilitados</h2></div>
-
                 <div class="card-body">
                     <a href="{{route('client.index')}}" class="btn btn-primary float-right">
                         Ver clientes habilitados
@@ -17,9 +16,9 @@
                           <tr>
                             <th scope="col">ID</th>
                             <th scope="col">Nombre</th>
-                            <th scope="col">Address</th>
-                            <th scope="col">Phone</th>
-                            <th scope="col">Email</th>
+                            <th scope="col">Dirección</th>
+                            <th scope="col">Celular</th>
+                            <th scope="col">Correo</th>
                             <th colspan="2"></th>
                           </tr>
                         </thead>
