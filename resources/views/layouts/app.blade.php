@@ -19,22 +19,19 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <style>
-    
-    html, body {
-        background-color:rgb(255, 249, 159);
-        font-family: 'Nunito', sans-serif;
-    }
-
-
+        html, body {
+            background-color:rgb(255, 249, 159);
+            font-family: 'Nunito', sans-serif;
+        }
     </style>
 </head>
 <body>
     <div id="app">
-        @include('custom.nav')
-
-        <main class="py-4">
+        @include('custom.nav',['route'=>'news'])
+        <main class="py-4" style="margin-top: 80px;margin-bottom: 80px;">
             @yield('content')
         </main>
     </div>
 </body>
+@include('custom.footer')
 </html>

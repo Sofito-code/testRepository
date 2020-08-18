@@ -16,12 +16,12 @@
 </div>
 
 <div class="form-group row">
-    <label for="URL" class="col-md-4 col-form-label text-md-right">{{ __('Ruta del producto (URL/Link)') }}</label>
+    <label for="slug" class="col-md-4 col-form-label text-md-right">{{ __('Ruta del producto (slug)') }}</label>
 
     <div class="col-md-6">
-        <input id="URL" type="text" class="form-control @error('URL') is-invalid @enderror" name="URL" value="{{ old('URL', $product->URL ?? '') }}" required autocomplete="URL">
+        <input id="slug" type="text" class="form-control @error('slug') is-invalid @enderror" name="slug" value="{{ old('slug', $product->slug ?? '') }}" required autocomplete="slug">
 
-        @error('URL')
+        @error('slug')
             <span class="invalid-feedback" role="alert">
                 <strong>{{ $message }}</strong>
             </span>

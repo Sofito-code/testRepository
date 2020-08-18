@@ -26,10 +26,9 @@
           </div>
           <div class="col-md-8">
             <div class="card-body">
-              <h5 class="card-title font-weight-bold">{{$product->title}}</h5>
-              <p class="card-text">{{$product->description}}</p>
-              <p class="card-text">{{$product->price}}</p>
-              <p class="card-text"><small class="text-muted">{{$product->created_at->diffForHumans()}}</small></p>
+              <h1 class="card-title font-weight-bold">{{$product->title}}</h1>
+              <h3 class="card-text">{{$product->description}}</h3>
+              <p class="card-text">${{$product->price}} COP</p>
               <a href="#" class="btn btn-success float-right">Comprar</a>
             </div>
           </div>

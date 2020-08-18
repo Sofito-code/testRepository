@@ -31,10 +31,8 @@ Route::group(['middleware' => 'admin'], function () {
     Route::put('tienda/{product}_actualizado', 'ProductController@updateState')->name('product.updateState');
 });
 //rutas de usuario
-Route::get('/', function () {
-    return view('welcome');
-});
-Route::get('/tablero', 'HomeController@index')->name('home')->middleware('verified');
+Route::view('/', 'news')->name('news');
+Route::get('/home', 'HomeController@index')->name('home')->middleware('verified');
 Route::resource('tienda', 'ProductController')
     ->names('product')
     ->parameters(['tienda' => 'product']);
