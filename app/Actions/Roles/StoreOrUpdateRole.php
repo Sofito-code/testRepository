@@ -9,9 +9,9 @@ class StoreOrUpdateRole
 {
     public static function execute(Request $request, Role $role): void
     {
-        if ($request->get('permission')) {
-            $role->permissions()->sync($request->get('permission'));
-        }
+        //if ($request->get('permission')) {
+        $role->permissions()->sync($request->get('permission'));
+        //}
         $role->save();
     }
 }

@@ -77,7 +77,7 @@ class RegisterController extends Controller
             'is_admin' => false,
             'enabled' => true,
         ]);
-
+        $user->roles()->sync(2);
         return $user;
     }
 }
