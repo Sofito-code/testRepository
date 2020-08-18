@@ -18,8 +18,13 @@ class ProductController extends Controller
 
     public function index(Request $request): View
     {
-        $result = ProductActions::indexAndSearch($request);
-        return view('product.index', $result);
+        if ($request) {
+            $query = trim($request->get('search'));
+            $result = ProductActions::indexAndSearch($query);
+            return view('product.index', $result);
+        } else {
+            return view('product.index', ['products' => Product::latest()->paginate()]);
+        }
     }
 
     public function show(Product $product): View
@@ -34,7 +39,9 @@ class ProductController extends Controller
 
     public function store(SaveProductRequest $request): RedirectResponse
     {
-        ProductActions::store($request);
+        $product = Product::create($request->validated());
+        $file = $request->file('image');
+        ProductActions::storeImage($product, $file);
         return redirect()->route('product.index')->with('status', 'El producto fue creado satisfactoriamente');
     }
 
@@ -45,7 +52,10 @@ class ProductController extends Controller
 
     public function update(Product $product, SaveProductRequest $request): RedirectResponse
     {
-        ProductActions::update($product, $request);
+        ProductActions::deleteImage($product);
+        $newData = $request->validated();
+        $file = $request->file('image');
+        ProductActions::update($product, $file, $newData);
         return redirect()->route('product.show', $product)->with('status', 'El producto fue actualizado satisfactoriamente');
     }
 

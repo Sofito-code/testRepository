@@ -21,7 +21,7 @@ class SaveProductRequest extends FormRequest
     {
         return [
             'title' => 'required|min:3|max:50',
-            'URL' => 'required|min:3|max:50',
+            'slug' => 'required|min:3|max:50',
             'description' => 'required|min:10|max:100',
             'price' => 'required|min:3|max:10|',
             'image' => 'file'
@@ -32,7 +32,7 @@ class SaveProductRequest extends FormRequest
     {
         return [
             'title.required' => 'El producto necesita un titulo',
-            'URL.required' => 'El producto necesita un URL',
+            'slug.required' => 'El producto necesita un slug',
             'description.required' => 'El producto necesita una descripcion',
             'price.required' => 'El producto necesita un precio'
         ];

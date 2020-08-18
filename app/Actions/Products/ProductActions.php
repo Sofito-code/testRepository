@@ -3,21 +3,16 @@
 namespace App\Actions\Products;
 
 use App\Product;
-use Illuminate\Http\Request;
+use Illuminate\Http\UploadedFile;
 
 class ProductActions
 {
-    public static function indexAndSearch(Request $request): array
+    public static function indexAndSearch(string $query): array
     {
-        if ($request) {
-            $query = trim($request->get('search'));
-            $product = Product::where('title', 'LIKE', '%' . $query . '%')
-                ->orderBy('id', 'asc')
-                ->get();
-            return ['products' => $product, 'search' => $query];
-        } else {
-            return ['products' => Product::latest()->paginate()];
-        }
+        $product = Product::where('title', 'LIKE', '%' . $query . '%')
+            ->orderBy('id', 'asc')
+            ->get();
+        return ['products' => $product, 'search' => $query];
     }
     public static function deleteImage(Product $product): void
     {
@@ -37,11 +32,9 @@ class ProductActions
             return 'product.whiteList';
         }
     }
-    public static function store(Request $request): void
+    public static function storeImage(Product $product, ?UploadedFile $file): void
     {
-        $product = Product::create($request->validated());
-        if ($request->hasFile('image')) {
-            $file = $request->file('image');
+        if ($file != null) {
             $name = $file->getClientOriginalName();
             $file->move('images/products', $name);
             $product->image = $name;
@@ -51,18 +44,16 @@ class ProductActions
         $product->save();
     }
 
-    public static function update(Product $product, Request $request): void
+    public static function update(Product $product, ?UploadedFile $file, array $newData): void
     {
         $savedImage = $product->image;
-        if ($request->hasFile('image')) {
-            ProductActions::deleteImage($product);
-            $file = $request->file('image');
+        if ($file != null) {
             $name = $file->getClientOriginalName();
             $file->move('images/products', $name);
-            $product->update($request->validated());
+            $product->update($newData);
             $product->image = $name;
         } else {
-            $product->update($request->validated());
+            $product->update($newData);
             $product->image = $savedImage;
         }
         $product->save();
