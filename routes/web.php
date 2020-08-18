@@ -1,10 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\User;
-use App\RolesAndPermissions\Models\Role;
-use App\RolesAndPermissions\Models\Permission;
 use Illuminate\Support\Facades\Auth;
+
 
 /*
 |--------------------------------------------------------------------------
