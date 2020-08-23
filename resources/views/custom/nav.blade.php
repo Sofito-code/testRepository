@@ -48,12 +48,12 @@
 <nav class="shadow navbar" style="background-color: #9B5D27; height: 25px; padding-top: 2px;" background="{{ asset('images/nav/backgroundnav2.png') }}">
         <div class="row justify-content-center" style="width: 100%; padding-left: 6rem; padding-top: 0rem">
             <a class="col nav-link {{setActive('product.*')}}" href="{{route('product.index')}}" style="padding-top: 0rem">Productos</a>
-            <a class="col nav-link disabled" href="#" style="padding-top: 0rem">Galería</a>
-            <a class="col nav-link disabled" href="#" style="padding-top: 0rem">Sobre Nosotros</a>
-            <a class="col nav-link disabled" href="#" style="padding-top: 0rem">Contáctanos</a>
+            <a class="col nav-link" href="#" style="padding-top: 0rem">Galería</a>
+            <a class="col nav-link" href="#" style="padding-top: 0rem">Sobre Nosotros</a>
+            <a class="col nav-link" href="#" style="padding-top: 0rem">Contáctanos</a>
             @auth
                 @if(auth()->user()->is_admin)
-                    <a class="col nav-link {{setActive('client.index')}}" href="{{ route('client.index')}}" style="padding-top: 0rem">Clientes</a>
+                    <a class="col nav-link {{setActive('client.index')}}" href="{{ route('client.index')}}" style="padding-top: 0rem">Usuarios</a>
                     <a class="col nav-link {{setActive('role.index')}}" href="{{ route('role.index')}}" style="padding-top: 0rem">Roles</a>
                 @endif
             @endauth
