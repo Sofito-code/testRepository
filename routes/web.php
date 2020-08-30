@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CategoryController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
@@ -14,8 +15,8 @@ use Illuminate\Support\Facades\Auth;
 | contains the "web" middleware group. Now create something great!
 |
 */
-// rutas de administrador
 
+// rutas de administrador
 Route::group(['middleware' => 'admin'], function () {
     Route::resource('roles', 'RoleController')->names('role');
     Route::put('clientes/{cliente}_actualizado', 'ClientController@updateState')->name('client.updateState');
@@ -31,7 +32,9 @@ Route::group(['middleware' => 'admin'], function () {
 //rutas de usuario
 Route::view('/', 'news')->name('news');
 Route::get('/home', 'HomeController@index')->name('home')->middleware('verified');
+Route::resource('category', 'CategoryController')->names('category');
 Route::resource('tienda', 'ProductController')
     ->names('product')
     ->parameters(['tienda' => 'product']);
+
 Auth::routes(['verify' => true]);

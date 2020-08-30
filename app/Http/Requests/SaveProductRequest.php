@@ -19,12 +19,17 @@ class SaveProductRequest extends FormRequest
 
     public function rules()
     {
+
         return [
             'title' => 'required|min:3|max:50',
             'slug' => 'required|min:3|max:50',
             'description' => 'required|min:10|max:100',
             'price' => 'required|min:3|max:10|',
-            'image' => 'file'
+            'image' => 'file',
+            'category_id' => 'required|numeric',
+            'quantity' => 'required|numeric',
+            'main_slider' => 'required|in:ye,no'
+
         ];
     }
 
@@ -34,7 +39,9 @@ class SaveProductRequest extends FormRequest
             'title.required' => 'El producto necesita un titulo',
             'slug.required' => 'El producto necesita un slug',
             'description.required' => 'El producto necesita una descripcion',
-            'price.required' => 'El producto necesita un precio'
+            'price.required' => 'El producto necesita un precio',
+            'category_id' => 'El producto necesita una categoria',
+            'quantity' => 'El producto necesita una cantidad',
         ];
     }
 }

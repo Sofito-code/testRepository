@@ -10,8 +10,17 @@
 
             {{-- buscador --}}
         <form class="form-inline mr-auto" action="{{route('product.index')}}">
-                <div class="col-xs-5" style="margin-left: 105px;">
+                <div class="col-xs-3" style="margin-left: 105px;">
                   <input name="search"class="form-control" type="search" placeholder="Buscar productos" style="width:400px; border: 1px solid #6bc72a">
+                  <select class="form-control" style="border: 1px solid #6bc72a">
+                    <option value="N/D">Categorias</option>
+                    @isset($categories)
+                        @foreach ($categories as $item)
+                            <option  value="{{$item->id}}">{{$item->name}}</option>
+                        @endforeach
+                    @endisset
+
+                  </select>
                   <button class="btn button-transparent" type="submit" style="padding-top: 0rem; padding-bottom: 0rem;"><img src="/images/icons/searchIcon.png" width="40" height="100%"></button>
                 </div>
             </form>
@@ -48,7 +57,6 @@
 <nav class="shadow navbar" style="background-color: #9B5D27; height: 25px; padding-top: 2px;" background="{{ asset('images/nav/backgroundnav2.png') }}">
         <div class="row justify-content-center" style="width: 100%; padding-left: 6rem; padding-top: 0rem">
             <a class="col nav-link {{setActive('product.*')}}" href="{{route('product.index')}}" style="padding-top: 0rem">Productos</a>
-            <a class="col nav-link" href="#" style="padding-top: 0rem">Galería</a>
             <a class="col nav-link" href="#" style="padding-top: 0rem">Sobre Nosotros</a>
             <a class="col nav-link" href="#" style="padding-top: 0rem">Contáctanos</a>
             @auth
