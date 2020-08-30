@@ -21,7 +21,7 @@ Route::group(['middleware' => 'admin'], function () {
     Route::put('clientes/{cliente}_actualizado', 'ClientController@updateState')->name('client.updateState');
     Route::get('clientes/{cliente}/cambio_estado', 'ClientController@changeState')->name('client.changeState');
     Route::get('clientes/deshabilitados', 'ClientController@disable')->name('client.disable');
-    Route::resource('clientes', 'ClientController')->names('client');
+    Route::resource('clientes', 'ClientController', ['except' => ['create', 'store']])->names('client');
     Route::get('tienda/listado_de_productos', 'ProductController@productList')->name('product.whiteList');
     Route::get('tienda/listado_de_productos_deshabilitados', 'ProductController@disable')->name('product.blackList');
     Route::get('tienda/{product}/cambio_estado', 'ProductController@changeState')->name('product.changeState');

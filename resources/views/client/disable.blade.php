@@ -1,14 +1,14 @@
 @extends('layouts.app')
-@section('title','Clientes deshabilitados| Lista')
+@section('title','Usuarios deshabilitados| Lista')
 @section('content')
 <div class="container">
-    <h1 class="text-center" style="padding-bottom: 10px">Lista de clientes deshabilitados</h1>
+    <h1 class="text-center" style="padding-bottom: 10px">Lista de usuarios deshabilitados</h1>
     <div class="row justify-content-center">
         <div class="col-md-10">
             <div class="card">
                 <div class="card-body">
                     <a href="{{route('client.index')}}" class="btn btn-primary float-right">
-                        Ver clientes habilitados
+                        Ver usuarios habilitados
                     </a><br><br>
                     @include('custom.message')
                     <table class="table table-hover">
@@ -34,7 +34,7 @@
                                 <td>{{$client->phone}}</td>
                                 <td>{{$client->email}}</td>
                                 <td><a class="btn btn-outline-secondary" href="{{route('client.show',$client->id)}}">ver</a></td>
-                                <td><a class="btn btn-outline-success" href="{{route('client.changeState',$client->id)}}">habilitar</a></td>
+                                <td><a class="btn btn-outline-success" href="{{route('client.edit', $client)}}">editar</a></td>
                             </tr>
 
                             @endforeach
