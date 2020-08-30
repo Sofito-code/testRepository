@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\SaveProductRequest;
 use App\Product;
 use App\Actions\Products\ProductActions;
+use App\Category;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
 
@@ -34,7 +35,7 @@ class ProductController extends Controller
 
     public function create(): View
     {
-        return view('product.create', ['product' => new Product]);
+        return view('product.create', ['product' => new Product, 'categories' => Category::all()]);
     }
 
     public function store(SaveProductRequest $request): RedirectResponse
@@ -47,7 +48,7 @@ class ProductController extends Controller
 
     public function edit(Product $product): View
     {
-        return view('product.edit', ['product' => $product]);
+        return view('product.edit', ['product' => $product, 'categories' => Category::all()]);
     }
 
     public function update(Product $product, SaveProductRequest $request): RedirectResponse

@@ -12,7 +12,7 @@
                     <div class="card-body">
                         <form method="POST" action="{{route('product.update', $product)}}" enctype="multipart/form-data">
                             @method('PATCH')
-                            @include('product.productForm',['btnText'=>'Actualizar'])
+                            @include('product.productForm',['btnText'=>'Actualizar','categories' => $categories])
                         </form>
                     </div>
                 </div>

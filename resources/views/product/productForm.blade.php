@@ -42,6 +42,42 @@
         @enderror
     </div>
 </div>
+<div class="form-group row">
+    <label for="quantity" class="col-md-4 col-form-label text-md-right">{{ __('Cantidad de productos disponibles') }}</label>
+
+    <div class="col-md-6">
+        <input id="quantity" type="text" class="form-control @error('quantity') is-invalid @enderror" name="quantity" value="{{ old('quantity', $product->quantity ?? '') }}" required autocomplete="quantity">
+
+        @error('quantity')
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
+            </span>
+        @enderror
+    </div>
+</div>
+<div class="form-group row">
+    <label for="category_id" class="col-md-4 col-form-label text-md-right">{{ __('Categoria') }}</label>
+
+    <div class="col-md-6">
+
+        <select class="form-control @error('category_id') is-invalid @enderror" name="category_id" id="category_id">
+            @foreach ($categories as $category)
+                <option value="{{$category->id}}"
+                    @isset($product->category_id)
+                        @if ($category->id == $product->category_id)
+                            selected
+                        @endif
+                     @endisset
+                >{{$category->name}}</option>
+            @endforeach
+          </select>
+        @error('category_id')
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
+            </span>
+        @enderror
+    </div>
+</div>
 
 <div class="form-group row">
     <label for="price" class="col-md-4 col-form-label text-md-right">{{ __('Precio') }}</label>
@@ -70,6 +106,37 @@
         @enderror
     </div>
 </div>
+<div class="form-group row">
+    <label for="main_slider" class="col-md-4 col-form-label text-md-right">{{ __('Aparecer en el slider principal') }}</label>
+
+    <div class="col-md-6">
+        <div class="custom-control custom-radio custom-control-inline">
+            <input type="radio" id="main_sliderYes" name="main_slider"
+             class="custom-control-input" value="ye"
+             @if($product['main_slider']=='ye')
+                 checked
+             @elseif(old('main_slider')=='ye')
+                 checked
+             @endif>
+            <label class="custom-control-label" for="main_sliderYes">Si</label>
+          </div>
+          <div class="custom-control custom-radio custom-control-inline">
+            <input type="radio" id="main_sliderNo" name="main_slider"
+            class="custom-control-input" value="no"
+            @if($product['main_slider']=='no')
+                 checked
+             @elseif(old('main_slider')=='no')
+                 checked
+             @endif>
+            <label class="custom-control-label" for="main_sliderNo">No</label>
+          </div>
+        @error('main_slider')
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
+            </span>
+        @enderror
+    </div>
+</div>
 
 
 <div class="form-group row mb-0">
@@ -79,3 +146,4 @@
         </button>
     </div>
 </div>
+
