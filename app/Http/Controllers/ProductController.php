@@ -5,7 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests\SaveProductRequest;
 use App\Product;
-use Illuminate\Support\Facades\Storage;
+use App\Actions\Products\ProductActions;
+use App\Category;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\View\View;
 
 class ProductController extends Controller
 {
@@ -14,48 +17,80 @@ class ProductController extends Controller
         $this->middleware('auth')->except('index', 'show');
     }
 
-    public function index()
+    public function index(Request $request): View
     {
-        return view('product.index', ['products' => Product::latest()->paginate()]);
+        if ($request) {
+            $query = trim($request->get('search'));
+            $result = ProductActions::indexAndSearch($query);
+            return view('product.index', $result);
+        } else {
+            return view('product.index', ['products' => Product::latest()->paginate()]);
+        }
     }
 
-    public function show(Product $product)
+    public function show(Product $product): View
     {
         return view('product.show', ['product' => $product]);
     }
 
-    public function create()
+    public function create(): View
     {
-        return view('product.create', ['product' => new Product]);
+        return view('product.create', ['product' => new Product, 'categories' => Category::all()]);
     }
 
-    public function store(SaveProductRequest $request)
+    public function store(SaveProductRequest $request): RedirectResponse
     {
-        if ($request->hasFile('image')) {
-            $file = $request->file('image');
-            $name = $file->getClientOriginalName();
-            $file->move('images/products', $name);
-        }
         $product = Product::create($request->validated());
-        $product->image = $name;
-        $product->save();
+        $file = $request->file('image');
+        ProductActions::storeImage($product, $file);
         return redirect()->route('product.index')->with('status', 'El producto fue creado satisfactoriamente');
     }
 
-    public function edit(Product $product)
+    public function edit(Product $product): View
     {
-        return view('product.edit', ['product' => $product]);
+        return view('product.edit', ['product' => $product, 'categories' => Category::all()]);
     }
 
-    public function update(Product $product, SaveProductRequest $request)
+    public function update(Product $product, SaveProductRequest $request): RedirectResponse
     {
-        $product->update($request->validated());
+        ProductActions::deleteImage($product);
+        $newData = $request->validated();
+        $file = $request->file('image');
+        ProductActions::update($product, $file, $newData);
         return redirect()->route('product.show', $product)->with('status', 'El producto fue actualizado satisfactoriamente');
     }
 
-    public function destroy(Product $product)
+    public function destroy(Product $product): RedirectResponse
     {
+        ProductActions::deleteImage($product);
         $product->delete();
         return redirect()->route('product.index')->with('status', 'El producto fue eliminado satisfactoriamente');
+    }
+    public function confirmDestroy(Product $product): View
+    {
+        return view('product.confirmDestroy', ['product' => $product]);
+    }
+    /*listado de productos */
+    public function productList(): View
+    {
+        $products = Product::orderBy('id', 'Desc')->paginate(5);
+        return view('product.whiteList', compact('products'));
+    }
+    /*lista de productos deshabilitados */
+    public function disable(): View
+    {
+        $products = Product::orderBy('id', 'Desc')->paginate(5);
+        return view('product.blackList', compact('products'))
+            ->with('status_success', 'Producto cambiado correctamente');
+    }
+    /*vista de confirmacion*/
+    public function changeState(int $id): View
+    {
+        return view('product.confirmChangeStatus', ['product' => Product::findOrFail($id)]);
+    }
+    public function updateState(int $id): RedirectResponse
+    {
+        $route = ProductActions::changeState(Product::findOrFail($id));
+        return redirect()->route($route);
     }
 }

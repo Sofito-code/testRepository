@@ -39,7 +39,17 @@ class RolesAndPermissionsInfoSeeder extends Seeder
             'enabled' => true,
             'password' => Hash::make('admin'),
         ]);
-        $userAdmin = user::create([
+        //rol admin
+        $roleAdmin = Role::create([
+            'name' => 'Admin',
+            'slug' => 'admin',
+            'description' => 'Administrador',
+            'full-access' => 'yes'
+        ]);
+        //table role_user admin
+        $userAdmin->roles()->sync([$roleAdmin->id]);
+        //user test
+        $userTest = user::create([
             'name' => 'test',
             'email' => 'test@chocoloco.com',
             'address' => 'N/D',
@@ -49,15 +59,15 @@ class RolesAndPermissionsInfoSeeder extends Seeder
             'enabled' => true,
             'password' => Hash::make('test'),
         ]);
-        //rol admin
-        $roleAdmin = Role::create([
-            'name' => 'Admin',
-            'slug' => 'admin',
-            'description' => 'Administrador',
-            'full-access' => 'yes'
+        //rol Cliente
+        $roleCliente = Role::create([
+            'name' => 'Cliente',
+            'slug' => 'cliente',
+            'description' => 'Cliente',
+            'full-access' => 'no'
         ]);
-        //table role_user
-        $userAdmin->roles()->sync([$roleAdmin->id]);
+        //table role_user cliente
+        $userTest->roles()->sync([$roleCliente->id]);
         //permissions
         $permission_all = [];
 

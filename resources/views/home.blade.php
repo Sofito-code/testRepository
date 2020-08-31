@@ -1,23 +1,40 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header"><h5>Tablero</h5></div>
-
-                <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
+    <div class="container">
+        <h1 class="text-center" style="padding-bottom: 10px">Inicio</h1>
+        <div class="row">
+            <div class="col-sm-2">
+                @include('custom.column')
+            </div>
+            <div class="col" style="width: 924px">
+                @include('custom.slider')
+                @guest
+                <div class="row justify-content-around" style="margin-top: 20px">
+                    <div class="col-md-10 justify-content-center">
+                        <div class="card">
+                            <div class="card-body">
+                                @include('custom.sessionStatus')
+                                ¡Bienvenido, nuestros productos son de puro chócolo y nuestra receta lleva con nosotros mas de 20 años 🌽!
+                            </div>
                         </div>
-                    @endif
-
-                    ¡Bienvenido, estas conectado!
+                    </div>
                 </div>
+                @else
+                    <div class="row justify-content-around" style="margin-top: 20px">
+                        <div class="col-md-10 justify-content-center">
+                            <div class="card">
+                                <div class="card-body">
+                                    @include('custom.sessionStatus')
+
+                                    ¡Bienvenido, estas conectado!
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                @endguest
+
             </div>
         </div>
     </div>
-</div>
 @endsection

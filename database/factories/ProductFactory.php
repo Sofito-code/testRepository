@@ -20,12 +20,16 @@ use Illuminate\Support\Str;
 
 $factory->define(Product::class, function (Faker $faker) {
     return [
-        'title' => $faker->title,
-        'URL' => $faker->URL,
-        'description' => Str::random(11),
-        'image' => now(),
-        'price' => Str::random(10),
+        'title' => $faker->sentence(4, false),
+        'slug' => Str::random(11),
+        'category_id' => rand(1, 2),
+        'description' => $faker->text,
+        'specs' => Str::random(40),
+        'image' => 'defaultImage.png',
+        'price' => rand(1000, 5000),
         'enabled' => true,
-
+        'main_slider' => 'No',
+        'created_at' => now(),
+        'updated_at' => now()
     ];
 });

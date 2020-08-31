@@ -1,15 +1,14 @@
 @extends('layouts.app')
-@section('title','Clientes deshabilitados| Lista')
+@section('title','Usuarios deshabilitados| Lista')
 @section('content')
 <div class="container">
+    <h1 class="text-center" style="padding-bottom: 10px">Lista de usuarios deshabilitados</h1>
     <div class="row justify-content-center">
         <div class="col-md-10">
             <div class="card">
-                <div class="card-header"><h2>Lista de clientes deshabilitados</h2></div>
-
                 <div class="card-body">
                     <a href="{{route('client.index')}}" class="btn btn-primary float-right">
-                        Ver clientes habilitados
+                        Ver usuarios habilitados
                     </a><br><br>
                     @include('custom.message')
                     <table class="table table-hover">
@@ -17,9 +16,9 @@
                           <tr>
                             <th scope="col">ID</th>
                             <th scope="col">Nombre</th>
-                            <th scope="col">Address</th>
-                            <th scope="col">Phone</th>
-                            <th scope="col">Email</th>
+                            <th scope="col">Dirección</th>
+                            <th scope="col">Celular</th>
+                            <th scope="col">Correo</th>
                             <th colspan="2"></th>
                           </tr>
                         </thead>
@@ -35,7 +34,7 @@
                                 <td>{{$client->phone}}</td>
                                 <td>{{$client->email}}</td>
                                 <td><a class="btn btn-outline-secondary" href="{{route('client.show',$client->id)}}">ver</a></td>
-                                <td><a class="btn btn-outline-success" href="{{route('client.changeState',$client->id)}}">habilitar</a></td>
+                                <td><a class="btn btn-outline-success" href="{{route('client.edit', $client)}}">editar</a></td>
                             </tr>
 
                             @endforeach
