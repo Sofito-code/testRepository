@@ -17,11 +17,12 @@ class ProductController extends Controller
         $this->middleware('auth')->except('index', 'show');
     }
 
-    public function index(Request $request): View
+    public function index(Request $request)
     {
-        if ($request) {
+        
+        if ($request) {                    
             $query = trim($request->get('search'));
-            $result = ProductActions::indexAndSearch($query);
+            $result = ProductActions::Search($query);
             return view('product.index', $result);
         } else {
             return view('product.index', ['products' => Product::latest()->paginate()]);

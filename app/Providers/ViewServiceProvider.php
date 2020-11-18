@@ -4,6 +4,8 @@ namespace App\Providers;
 
 use App\Category;
 use App\Http\View\Composers\CategoryComposer;
+use Darryldecode\Cart\Cart;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\View;
 
@@ -26,7 +28,8 @@ class ViewServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-
         View::composer('*', 'App\Http\View\Composers\CategoryComposer');
+        //state
+        View::composer('*', 'App\Http\View\Composers\HamperComposer');
     }
 }

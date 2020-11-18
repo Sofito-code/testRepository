@@ -8,7 +8,7 @@
         </div>
         <div class="col" style="width: 924px">
             @include('auth.cardVerify')
-            @include('custom.slider')
+            @include('custom.mainSlider')
         </div>
     </div>
 </div>

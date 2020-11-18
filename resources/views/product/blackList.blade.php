@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-10">
+        <div class="col-md-9">
             <div class="card border-danger">
                 <div class="card-header"><h2>Lista de productos deshabilitados</h2></div>
 

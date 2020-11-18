@@ -4,8 +4,8 @@
 <div class="container">
     <h1 class="text-center" style="padding-bottom: 10px">Lista de Roles</h1>
     <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
+        <div class="col-md-9">
+            <div class="card border-success">
                 <div class="card-body">
 
                     <a href="{{route('role.create')}}" class="btn btn-primary float-right">

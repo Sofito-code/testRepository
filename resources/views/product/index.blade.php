@@ -3,7 +3,7 @@
 @section('content')
 
 <div class="container">
-    <h1 class="text-center">Tienda</h1>
+    <h1 class="text-center" style="color: black;">Tienda</h1>
 
     <div class="row">
         <div class="col-sm-2">
@@ -31,7 +31,7 @@
                     </div>
                 </div>
             @empty
-                <li>No hay productos para mostrar</li>
+                <li>♥ No hay productos para mostrar</li>
             @endforelse
         </div>
         </ul>

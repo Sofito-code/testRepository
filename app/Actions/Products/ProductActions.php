@@ -7,7 +7,7 @@ use Illuminate\Http\UploadedFile;
 
 class ProductActions
 {
-    public static function indexAndSearch(string $query): array
+    public static function Search(string $query): array
     {
         $product = Product::where('title', 'LIKE', '%' . $query . '%')
             ->orderBy('id', 'asc')

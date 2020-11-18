@@ -13,7 +13,7 @@ class HamperController extends Controller
      */
     public function index()
     {
-        //
+        return view('hamper.index');
     }
 
     /**

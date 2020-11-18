@@ -4,7 +4,7 @@
 <div class="container">
     <h1 class="text-center" style="padding-bottom: 10px">Lista de usuarios deshabilitados</h1>
     <div class="row justify-content-center">
-        <div class="col-md-10">
+        <div class="col-md-9">
             <div class="card">
                 <div class="card-body">
                     <a href="{{route('client.index')}}" class="btn btn-primary float-right">

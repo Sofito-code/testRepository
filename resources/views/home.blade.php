@@ -4,14 +4,14 @@
     <div class="container">
         <h1 class="text-center" style="padding-bottom: 10px">Inicio</h1>
         <div class="row">
+            @include('custom.mainSlider')
             <div class="col-sm-2">
                 @include('custom.column')
             </div>
             <div class="col" style="width: 924px">
-                @include('custom.slider')
                 @guest
                 <div class="row justify-content-around" style="margin-top: 20px">
-                    <div class="col-md-10 justify-content-center">
+                    <div class="col-md justify-content-center">
                         <div class="card">
                             <div class="card-body">
                                 @include('custom.sessionStatus')
@@ -22,7 +22,7 @@
                 </div>
                 @else
                     <div class="row justify-content-around" style="margin-top: 20px">
-                        <div class="col-md-10 justify-content-center">
+                        <div class="col-md justify-content-center">
                             <div class="card">
                                 <div class="card-body">
                                     @include('custom.sessionStatus')

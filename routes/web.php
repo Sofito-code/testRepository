@@ -38,3 +38,4 @@ Route::resource('tienda', 'ProductController')
     ->parameters(['tienda' => 'product']);
 
 Auth::routes(['verify' => true]);
+Route::resource('canasta', 'HamperController')->names('hamper');

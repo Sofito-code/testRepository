@@ -3,13 +3,14 @@
 @section('content')
 <div class="container">
 
+
     <div class="row align-items-center">
         <div class="col-md-offset-3">
             <img class="img-responsive menu-thumbnails" style="width:331.7px;height:429px;" src="/images/logos/logoC.png"/>
         </div>
         <div class="col">
+            <h1 class="text-center" style="padding-bottom: 10px">¡Nos gusta tenerte con nosotros, bienvenido de nuevo!</h1>
             <div class="card border-success">
-                <div class="card-header bg-lime"><h4 class="text-center">¡Nos gusta tenerte con nosotros, bienvenido de nuevo!</h4></div>
 
                 <div class="card-body">
 

@@ -10,28 +10,50 @@
     <title>@yield('title', 'Chocoloco')</title>
 
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
+
+    <script src="{{ asset('/css/js/jquery-3.2.1.min.js')}}"></script>
+    <script src="{{ asset('/css/styles/bootstrap-4.1.2/popper.js')}}"></script>
+    <script src="{{ asset('/css/styles/bootstrap-4.1.2/bootstrap.min.js')}}"></script>
+    <script src="{{ asset('/css/plugins/greensock/TweenMax.min.js')}}"></script>
+    <script src="{{ asset('/css/plugins/greensock/TimelineMax.min.js')}}"></script>
+    <script src="{{ asset('/css/plugins/scrollmagic/ScrollMagic.min.js')}}"></script>
+    <script src="{{ asset('/css/plugins/greensock/animation.gsap.min.js')}}"></script>
+    <script src="{{ asset('/css/plugins/greensock/ScrollToPlugin.min.js')}}"></script>
+    <script src="{{ asset('/css/plugins/OwlCarousel2-2.2.1/owl.carousel.js')}}"></script>
+    <script src="{{ asset('/css/plugins/easing/easing.js')}}"></script>
+    <script src="{{ asset('/css/plugins/progressbar/progressbar.min.js')}}"></script>
+    <script src="{{ asset('/css/plugins/parallax-js-master/parallax.min.js')}}"></script>
+    <script src="{{ asset('/css/js/custom.js')}}"></script>
+
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito" >
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{{ asset('/css/styles/bootstrap-4.1.2/bootstrap.min.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('/css/plugins/font-awesome-4.7.0/css/font-awesome.min.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('/css/plugins/OwlCarousel2-2.2.1/owl.carousel.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('/css/plugins/OwlCarousel2-2.2.1/owl.theme.default.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('/css/plugins/OwlCarousel2-2.2.1/animate.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('/css/styles/main_styles.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('/css/styles/responsive.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('/css/styles/comun.css')}}">
     <style>
         html, body {
-            background-color:rgb(255, 249, 159);
+            background-color:white;
             font-family: 'Nunito', sans-serif;
         }
     </style>
 </head>
 <body>
     <div id="app">
-        @include('custom.nav',['route'=>'news'])
+        @include('layouts.nav',['route'=>'news'])
         <main class="py-4" style="margin-top: 80px;margin-bottom: 80px;">
             @yield('content')
         </main>
     </div>
 </body>
-@include('custom.footer')
+@include('layouts.footer')
 </html>
